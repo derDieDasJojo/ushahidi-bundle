@@ -23,12 +23,11 @@ services:
       MYSQL_DATABASE: ushahidi
 
   client:
-    build:
-      context: ./client
-      args:
-        BACKEND_URL: http://localhost:8080/
+    build: ./client
     ports:
       - 8081:80
+    environment:
+      BACKEND_URL: http://localhost:8080/
 
 volumes:
   mariadb:

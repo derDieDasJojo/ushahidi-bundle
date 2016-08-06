@@ -1,7 +1,7 @@
 FROM nginx:1.11.1
 
-ARG BACKEND_URL
+COPY *.sh /
 
-COPY build.sh /tmp/
+RUN /build.sh
 
-RUN bash /tmp/build.sh
+CMD ["/start.sh"]

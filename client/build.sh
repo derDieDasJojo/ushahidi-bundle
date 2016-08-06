@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -o pipefail
 
 DEPENDENCIES="git nodejs-legacy npm"
@@ -17,7 +16,7 @@ cd $BUILD_DIR
 npm install -g gulp
 npm install -g bower
 npm install
-gulp build
+BACKEND_URL="{{backend_url}}" gulp build
 
 # Move static files to nginx root
 mv $BUILD_DIR/server/www /var/
