@@ -1,0 +1,34 @@
+version: "2"
+
+services:
+  platform:
+    build: ./platform
+    ports:
+      - 8080:80
+    environment:
+      DB_HOST: mariadb
+      DB_NAME: ushahidi
+      DB_TYPE: MySQLi
+      DB_USER: root
+      DB_PASS: secret
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:10.1.16
+    volumes:
+      - mariadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: ushahidi
+
+  client:
+    build:
+      context: ./client
+      args:
+        BACKEND_URL: http://localhost:8080/
+    ports:
+      - 8081:80
+
+volumes:
+  mariadb:
