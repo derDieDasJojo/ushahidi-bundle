@@ -17,7 +17,7 @@ Start applications:
 
     docker-compose up
 
-Now access ushidi on http://localhost:8080. Login with user 'admin' and
+Now access ushidi on http://localhost:8081. Login with user 'admin' and
 password 'admin'.
 
 ## You can do better
