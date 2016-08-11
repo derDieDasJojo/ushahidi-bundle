@@ -2,8 +2,8 @@ FROM node:6.3.1-wheezy
 
 RUN npm install -g http-server
 
-RUN git clone --depth 1 --branch master \
-  https://github.com/ushahidi/platform-client /tmp/client
+RUN git clone --depth 1 --branch develop \
+  https://github.com/derDieDasJojo/platform-client /tmp/client
 
 ENV BACKEND_URL="{{backend_url}}"
 RUN cd /tmp/client && \
