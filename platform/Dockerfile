@@ -30,3 +30,5 @@ RUN git clone --depth 1 https://github.com/ushahidi/platform.git /var/www/html &
   sed -i 's/var\/www\/html/var\/www\/html\/httpdocs/' /etc/apache2/sites-available/000-default.conf && \
   a2enmod rewrite && \
   ./bin/update --production --no-migrate
+ADD start.sh /start.sh
+CMD /start.sh

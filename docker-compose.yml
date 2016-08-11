@@ -2,32 +2,38 @@ version: "2"
 
 services:
   platform:
-    build: ./platform
+    #image: bennibu/ushahidi-platform
+    build: platform
     ports:
-      - 8080:80
+    - "8081:80"
     environment:
-      DB_HOST: mariadb
-      DB_NAME: ushahidi
-      DB_TYPE: MySQLi
-      DB_USER: root
-      DB_PASS: secret
+    - DB_HOST=mariadb
+    - DB_NAME=ushahidi
+    - DB_TYPE=MySQLi
+    - DB_USER=root
+    - DB_PASS=secret
     depends_on:
-      - mariadb
+    - mariadb
+    restart: always
+
+  client:
+    #image: bennibu/ushahidi-client:cam 
+    build: client
+    ports: 
+    - "8080:80"
+    restart: always
+    environment:
+      BACKEND_URL: https://platform.staging.cam.echo5.de
 
   mariadb:
     image: mariadb:10.1.16
     volumes:
-      - mariadb:/var/lib/mysql
+    - mariadb:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: ushahidi
-
-  client:
-    build: ./client
-    ports:
-      - 8081:80
-    environment:
-      BACKEND_URL: http://localhost:8080/
-
+    - MYSQL_ROOT_PASSWORD=secret
+    - MYSQL_DATABASE=ushahidi
+    restart: always
+  
 volumes:
   mariadb:
+  
