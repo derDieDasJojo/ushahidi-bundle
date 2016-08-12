@@ -14,6 +14,8 @@ RUN cd /tmp/client && \
   npm cache clean && \
   rm -rf /tmp/*
 
+RUN apt-get update && apt-get install -y vim-tiny nginx
+ADD nginx-site.conf /etc/nginx/sites-available/default
 COPY start.sh /
 
 EXPOSE 8080
