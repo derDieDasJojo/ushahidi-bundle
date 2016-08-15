@@ -4,6 +4,8 @@ services:
   platform:
     #image: bennibu/ushahidi-platform
     build: platform
+    volumes:
+    - uploads:/var/www/html/application/media/uploads
     ports:
     - "8081:80"
     environment:
@@ -35,5 +37,6 @@ services:
     restart: always
   
 volumes:
+  uploads:
   mariadb:
   
